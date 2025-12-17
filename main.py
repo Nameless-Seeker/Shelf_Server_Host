@@ -25,7 +25,7 @@ def bill(id: str):
     conn = get_connection()
     con = conn.cursor()
     
-    con.execute("select id from A")
+    con.execute("select id from a")
     
     _list = con.fetchall()
     
@@ -35,7 +35,7 @@ def bill(id: str):
         raise HTTPException(status_code=400,detail="ID not found")
     
     
-    con.execute(f"SELECT id,Product_Name,Cost from A where id = {id}")
+    con.execute(f"SELECT id,Product_Name,Cost from a where id = {id}")
     res = con.fetchone()
     
     id = res[0]
@@ -56,7 +56,7 @@ def status():
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT * from A")
+    cur.execute("SELECT * from a")
     rows = cur.fetchall()
 
     cur.close()
@@ -77,12 +77,12 @@ def status():
 
 
 @app.post("/inc")
-def inc(value: A):
+def inc(value: a):
     conn = get_connection()
     cur = conn.cursor()
 
     # check id exists
-    cur.execute("SELECT * FROM A")
+    cur.execute("SELECT * FROM a")
     _data = cur.fetchall()
 
     data = [i[0] for i in _data]
@@ -95,16 +95,16 @@ def inc(value: A):
         raise HTTPException(status_code=400, detail="ID not found")
 
     if value.state == 1:
-        cur.execute(f"UPDATE A SET count = count + 1 WHERE id = {value.id}")
+        cur.execute(f"UPDATE a SET count = count + 1 WHERE id = {value.id}")
         msg = {"messege":"Count incremented"}
     else:
-        cur.execute(f"UPDATE A SET count = count - 1 WHERE id = {value.id}")
+        cur.execute(f"UPDATE a SET count = count - 1 WHERE id = {value.id}")
         msg = {"messege":"Count decremented"}
 
     conn.commit()
 
     #Code for response
-    cur.execute(f"SELECT * FROM A WHERE id = {value.id}")
+    cur.execute(f"SELECT * FROM a WHERE id = {value.id}")
     data = cur.fetchone()
     pID = data[0]
     pName = data[2]
