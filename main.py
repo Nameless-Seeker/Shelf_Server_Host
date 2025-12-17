@@ -77,7 +77,7 @@ def status():
 
 
 @app.post("/inc")
-def inc(value: a):
+def inc(value: A):
     conn = get_connection()
     cur = conn.cursor()
 
