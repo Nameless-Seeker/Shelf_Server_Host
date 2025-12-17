@@ -38,7 +38,7 @@ def bill(id: str):
 
 
     #ID exists
-    con.execute(f"SELECT id,Product_Name,Cost from a where id = {id}")
+    con.execute(f"SELECT id,Product_Name,Cost from a where id = %s",(id,))
     res = con.fetchone()
     
     id = res[0]
@@ -54,16 +54,17 @@ def bill(id: str):
     con.execute("SELECT * FROM bill")
     _list_of_buy_items = con.fetchall()
 
-    list_of_buy_items = {}
+    list_of_buy_items = []
 
     for i in _list_of_buy_items:
         temp_dict = {}
 
+        temp_dict['pID'] = i[0]
         temp_dict['pdtName'] = i[1]
         temp_dict['qty'] = i[2]
         temp_dict['cost'] = i[3]
 
-        list_of_buy_items[i[0]] = temp_dict
+        list_of_buy_items.append(temp_dict)
 
     con.close()
     conn.close()
