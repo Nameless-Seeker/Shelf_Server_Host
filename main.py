@@ -22,29 +22,50 @@ app = FastAPI()
 
 @app.post("/bill/{id}",status_code=201)
 def bill(id: str):
+    #SQL Connection
     conn = get_connection()
     con = conn.cursor()
-    
+
+    #Validate ID
     con.execute("select id from a")
-    
+
     _list = con.fetchall()
     
     list_of_ids = [i[0] for i in _list]
-    
+
     if(id not in list_of_ids):
         raise HTTPException(status_code=400,detail="ID not found")
-    
-    
+
+
+    #ID exists
     con.execute(f"SELECT id,Product_Name,Cost from a where id = {id}")
     res = con.fetchone()
     
     id = res[0]
     productName = res[1]
     cost = res[2]
-    
+
+    #Inserting into list of buy items
+    con.execute(f"INSERT into bill (pID,pdtName,qty,cost) values({id},{productName},1,{cost}) on duplicate key update qty = qty + 1,cost = cost+{cost}")
+    conn.commit()
+
+    con.execute("SELECT * FROM bill")
+    _list_of_buy_items = con.fetchall()
+
+    list_of_buy_items = {}
+
+    for i in _list_of_buy_items:
+        temp_dict = {}
+
+        temp_dict['pdtName'] = i[1]
+        temp_dict['qty'] = i[2]
+        temp_dict['cost'] = i[3]
+
+        list_of_buy_items[i[0]] = temp_dict
+
     con.close()
     conn.close()
-    return{"id":id,"pdtName":productName,"cost":cost}
+    return list_of_buy_items
 
 @app.get("/health")
 def health():
@@ -120,3 +141,6 @@ def inc(value: A):
     conn.close()
 
     return msg
+
+# #For billing structure
+# @app.post()
