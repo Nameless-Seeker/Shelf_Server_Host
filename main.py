@@ -20,7 +20,7 @@ class A(BaseModel):
 
 app = FastAPI()
 
-@app.post("/bill/{id}")
+@app.post("/bill/{id}",status_code=201)
 def bill(id: str):
     conn = get_connection()
     con = conn.cursor()
