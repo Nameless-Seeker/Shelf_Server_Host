@@ -46,7 +46,9 @@ def bill(id: str):
     cost = res[2]
 
     #Inserting into list of buy items
-    con.execute(f"INSERT into bill (pID,pdtName,qty,cost) values({id},{productName},1,{cost}) on duplicate key update qty = qty + 1,cost = cost+{cost}")
+    sql = "INSERT INTO bill (pID, pdtName, qty, cost) VALUES (%s, %s, 1, %s) ON DUPLICATE KEY UPDATE qty = qty + 1,cost = cost + VALUES (cost)"
+
+    con.execute(sql, (id, productName, cost))
     conn.commit()
 
     con.execute("SELECT * FROM bill")
