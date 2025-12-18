@@ -201,7 +201,7 @@ def transaction(abc: BillRequest):
 
     return {'status':'successful'}
 
-@app.post("deleteUsers",status_code=201)
+@app.post("/deleteUsers",status_code=201)
 def deleteUsers(abc: BillRequest):
     user_id = abc.user_id
 
