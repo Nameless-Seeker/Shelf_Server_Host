@@ -145,5 +145,16 @@ def inc(value: A):
 
     return msg
 
-# #For billing structure
-# @app.post()
+@app.get('/clearBill',status_code=200)
+def clearBill():
+    conn = get_connection()
+    con = conn.cursor()
+
+    # //Clearing the bill table when all products bought
+    con.execute("truncate table bill")
+
+    conn.commit()
+    con.close()
+    conn.close()
+
+    return {"message":"bill table cleared"}
