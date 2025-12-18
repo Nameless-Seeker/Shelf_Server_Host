@@ -22,8 +22,10 @@ class A(BaseModel):
 
 app = FastAPI()
 
+
 class BillRequest(BaseModel):
     user_id: str
+
 
 @app.post("/bill/{id}", status_code=201)
 def bill(id: str, req: BillRequest):
@@ -55,12 +57,13 @@ def bill(id: str, req: BillRequest):
 
     # Inserting into list of buy items
     sql = """
-INSERT INTO bill (user_id, p_id, p_name, qty, cost)
-VALUES (%s, %s, %s, 1, %s)
-ON DUPLICATE KEY UPDATE
-    qty  = qty + 1,
-    cost = cost + VALUES(cost)
-"""
+          INSERT INTO bill (user_id, p_id, p_name, qty, cost)
+          VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
+          UPDATE
+              qty = qty + 1,
+              cost = cost +
+          VALUES (cost) \
+          """
 
     con.execute(sql, (user_id, id, productName, cost))
 
@@ -176,3 +179,21 @@ def clearBill():
     conn.close()
 
     return {"message": "bill table cleared"}
+
+
+@app.post('/transaction', status_code=201)
+def transaction(id: BillRequest):
+    user_id = id.user_id
+
+    conn = get_connection()
+    con = conn.cursor()
+
+    con.execute("""INSERT INTO transaction (user_id, products)
+                   SELECT user_id, JSON_ARRAYAGG(p_id)
+                   FROM bill
+                   where user_id = %s
+                   GROUP BY user_id;
+                """,(user_id,))
+
+
+    return {'status':'successful'}
