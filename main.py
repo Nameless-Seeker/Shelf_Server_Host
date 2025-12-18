@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 import mysql.connector
 import os
+
 
 def get_connection():
     return mysql.connector.connect(
@@ -18,40 +19,55 @@ class A(BaseModel):
     state: int = Field(..., title="state of the switch",
                        description="Where the switch is pressed or not")
 
+
 app = FastAPI()
 
-@app.post("/bill/{id}",status_code=201)
-def bill(id: str):
-    #SQL Connection
+class BillRequest(BaseModel):
+    user_id: str
+
+@app.post("/bill/{id}", status_code=201)
+def bill(id: str, req: BillRequest):
+    user_id = req.user_id
+    # SQL Connection
     conn = get_connection()
     con = conn.cursor()
 
-    #Validate ID
+    # Validate ID
     con.execute("select id from a")
 
     _list = con.fetchall()
-    
+
     list_of_ids = [i[0] for i in _list]
 
-    if(id not in list_of_ids):
-        raise HTTPException(status_code=400,detail="ID not found")
+    if (id not in list_of_ids):
+        raise HTTPException(status_code=400, detail="ID not found")
 
-
-    #ID exists
-    con.execute(f"SELECT id,Product_Name,Cost from a where id = %s",(id,))
+    # ID exists
+    con.execute(f"SELECT id,Product_Name,Cost from a where id = %s", (id,))
     res = con.fetchone()
-    
+
     id = res[0]
     productName = res[1]
     cost = res[2]
 
-    #Inserting into list of buy items
-    sql = "INSERT INTO bill (pID, pdtName, qty, cost) VALUES (%s, %s, 1, %s) ON DUPLICATE KEY UPDATE qty = qty + 1,cost = cost + VALUES (cost)"
+    # con.execute(
+    #     "ALTER TABLE bill ADD UNIQUE KEY uq_user_product (user_id, p_id)")
 
-    con.execute(sql, (id, productName, cost))
+    # Inserting into list of buy items
+    sql = """
+INSERT INTO bill (user_id, p_id, p_name, qty, cost)
+VALUES (%s, %s, %s, 1, %s)
+ON DUPLICATE KEY UPDATE
+    qty  = qty + 1,
+    cost = cost + VALUES(cost)
+"""
+
+    con.execute(sql, (user_id, id, productName, cost))
+
     conn.commit()
 
-    con.execute("SELECT * FROM bill")
+    con.execute(
+        f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
     _list_of_buy_items = con.fetchall()
 
     list_of_buy_items = []
@@ -70,6 +86,7 @@ def bill(id: str):
     conn.close()
     return list_of_buy_items
 
+
 @app.get("/health")
 def health():
     return {"status": "OK"}
@@ -87,16 +104,16 @@ def status():
     conn.close()
 
     ans = {}
-    
+
     for i in rows:
         temp_dict = {}
-        
+
         temp_dict['Count'] = i[1]
         temp_dict['Product Name'] = i[2]
         temp_dict["Date and time"] = i[3].ctime()
         temp_dict["Cost per item"] = i[4]
         ans[i[0]] = temp_dict
-            
+
     return ans
 
 
@@ -120,21 +137,21 @@ def inc(value: A):
 
     if value.state == 1:
         cur.execute(f"UPDATE a SET count = count + 1 WHERE id = {value.id}")
-        msg = {"messege":"Count incremented"}
+        msg = {"messege": "Count incremented"}
     else:
         cur.execute(f"UPDATE a SET count = count - 1 WHERE id = {value.id}")
-        msg = {"messege":"Count decremented"}
+        msg = {"messege": "Count decremented"}
 
     conn.commit()
 
-    #Code for response
+    # Code for response
     cur.execute(f"SELECT * FROM a WHERE id = {value.id}")
     data = cur.fetchone()
     pID = data[0]
     pName = data[2]
     new_count = data[1]
     cost_per_item = data[4]
-    
+
     msg['Shelf id'] = pID
     msg['PRoduct Name'] = pName
     msg["Total items present"] = new_count
@@ -145,7 +162,8 @@ def inc(value: A):
 
     return msg
 
-@app.get('/clearBill',status_code=200)
+
+@app.get('/clearBill', status_code=200)
 def clearBill():
     conn = get_connection()
     con = conn.cursor()
@@ -157,4 +175,4 @@ def clearBill():
     con.close()
     conn.close()
 
-    return {"message":"bill table cleared"}
+    return {"message": "bill table cleared"}
