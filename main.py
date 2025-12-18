@@ -188,8 +188,8 @@ def transaction(abc: BillRequest):
     conn = get_connection()
     con = conn.cursor()
 
-    con.execute("""INSERT INTO transaction (user_id, products)
-                   SELECT user_id, JSON_ARRAYAGG(p_id)
+    con.execute("""INSERT INTO transaction (products)
+                   SELECT JSON_ARRAYAGG(p_id)
                    FROM bill
                    where user_id = %s
                    GROUP BY user_id;
