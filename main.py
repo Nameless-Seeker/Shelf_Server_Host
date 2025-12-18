@@ -208,7 +208,7 @@ def deleteUsers(abc: BillRequest):
     conn =get_connection()
     con = conn.cursor()
 
-    con.execute("DELETE FROM bill where user_id = %s",(user_id,))
+    con.execute("""DELETE FROM bill where user_id = %s""",(user_id,))
 
     conn.commit()
     con.close()
