@@ -182,8 +182,8 @@ def clearBill():
 
 
 @app.post('/transaction', status_code=201)
-def transaction(id: BillRequest):
-    user_id = id.user_id
+def transaction(abc: BillRequest):
+    user_id = abc.user_id
 
     conn = get_connection()
     con = conn.cursor()
@@ -195,5 +195,8 @@ def transaction(id: BillRequest):
                    GROUP BY user_id;
                 """,(user_id,))
 
+    conn.commit()
+    con.close()
+    conn.close()
 
     return {'status':'successful'}
