@@ -200,3 +200,18 @@ def transaction(abc: BillRequest):
     conn.close()
 
     return {'status':'successful'}
+
+@app.post("deleteUsers",status_code=201)
+def deleteUsers(abc: BillRequest):
+    user_id = abc.user_id
+
+    conn =get_connection()
+    con = conn.cursor()
+
+    con.execute("DELETE FROM bill where user_id = %s",(user_id,))
+
+    conn.commit()
+    con.close()
+    conn.close()
+
+    return {'messege':'congrats, bitch'}
