@@ -125,18 +125,7 @@ def inc(value: A):
     conn = get_connection()
     cur = conn.cursor()
 
-    # check id exists
-    cur.execute("SELECT * FROM a")
-    _data = cur.fetchall()
-
-    data = [i[0] for i in _data]
-
     msg = {}
-
-    if value.id not in data:
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="ID not found")
 
     if value.state == 1:
         cur.execute(f"UPDATE a SET count = count + 1 WHERE id = {value.id}")
@@ -148,7 +137,7 @@ def inc(value: A):
     conn.commit()
 
     # Code for response
-    cur.execute(f"SELECT * FROM a WHERE id = {value.id}")
+    cur.execute("SELECT * FROM a WHERE id = %s",(value.id,))
     data = cur.fetchone()
     pID = data[0]
     pName = data[2]
