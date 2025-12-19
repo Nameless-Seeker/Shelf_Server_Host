@@ -202,7 +202,7 @@ def transaction(cart_id: str = Path(...)):
     return {'status': 'successful'}
 
 
-@app.delete("/deleteOneCartItems/item/{cart_id}", status_code=204)
+@app.delete("/deleteOneCartItems/item/{cart_id}", status_code=200)
 def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)):
     conn = get_connection()
     con = conn.cursor()
@@ -217,10 +217,11 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     else:
         con.execute("delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
 
+    conn.commit()
+
     # Returning the updated table
     con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (cart_id,))
     _list_of_buy_items = con.fetchall()
-    conn.commit()
 
     list_of_buy_items = []
 
@@ -241,7 +242,6 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
 
 @app.delete("/deleteOneCartItems/{cart_id}", status_code=204)
 def deleteOneCartItems(cart_id: str = Path(...)):
-
     conn = get_connection()
     con = conn.cursor()
 
@@ -249,6 +249,7 @@ def deleteOneCartItems(cart_id: str = Path(...)):
                    FROM bill
                    where user_id = %s""", (cart_id,))
 
+    conn.commit()
     con.close()
     conn.close()
     return
