@@ -207,15 +207,15 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     conn = get_connection()
     con = conn.cursor()
 
-    con.execute("select qty from bill where user_id = %s and p_id = %s",(cart_id,product_id))
+    con.execute("select qty from bill where user_id = %s and p_id = %s", (cart_id, product_id))
     qty = con.fetchone()[0]
 
-    #If qty is more than one then decrease one product
-    if(qty > 1):
-        con.execute("update bill set qty = qty-1 where user_id = %s and p_id = %s",(cart_id,product_id))
+    # If qty is more than one then decrease one product
+    if (qty > 1):
+        con.execute("update bill set qty = qty-1 where user_id = %s and p_id = %s", (cart_id, product_id))
 
     else:
-        con.execute("delete from bill where user_id = %s and p_id = %s",(cart_id,product_id))
+        con.execute("delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
 
     conn.commit()
     con.close()
@@ -235,8 +235,24 @@ def deleteOneCartItems(cart_id: str = Path(...)):
                    FROM bill
                    where user_id = %s""", (user_id,))
 
-    conn.commit()
+    # Returning the updated table
+    con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
+    _list_of_buy_items = con.fetchall()
+
+    list_of_buy_items = []
+
+    for i in _list_of_buy_items:
+        temp_dict = {}
+
+        temp_dict['pID'] = i[0]
+        temp_dict['pdtName'] = i[1]
+        temp_dict['qty'] = i[2]
+        temp_dict['cost'] = i[3]
+
+        list_of_buy_items.append(temp_dict)
+
     con.close()
     conn.close()
+    return list_of_buy_items
 
     return
