@@ -250,23 +250,6 @@ def deleteOneCartItems(cart_id: str = Path(...)):
                    FROM bill
                    where user_id = %s""", (user_id,))
 
-    # Returning the updated table
-    con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
-    _list_of_buy_items = con.fetchall()
-    conn.commit()
-
-    list_of_buy_items = []
-
-    for i in _list_of_buy_items:
-        temp_dict = {}
-
-        temp_dict['pID'] = i[0]
-        temp_dict['pdtName'] = i[1]
-        temp_dict['qty'] = i[2]
-        temp_dict['cost'] = i[3]
-
-        list_of_buy_items.append(temp_dict)
-
     con.close()
     conn.close()
-    return list_of_buy_items
+    return
