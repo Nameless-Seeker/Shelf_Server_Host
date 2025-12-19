@@ -207,12 +207,15 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     conn = get_connection()
     con = conn.cursor()
 
-    sqlQuery = ("""DELETE
-                   FROM bill
-                   where user_id = %s
-                     and p_id = %s""")
+    con.execute("select qty from bill where user_id = %s and p_id = %s",(cart_id,product_id))
+    qty = con.fetchone()[0]
 
-    con.execute(sqlQuery, (cart_id, product_id,))
+    #If qty is more than one then decrease one product
+    if(qty > 1):
+        con.execute("update bill set qty = qty-1 where user_id = %s and p_id = %s",(cart_id,product_id))
+
+    else:
+        con.execute("delete from bill where user_id = %s and p_id = %s",(cart_id,product_id))
 
     conn.commit()
     con.close()
