@@ -241,14 +241,13 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
 
 @app.delete("/deleteOneCartItems/{cart_id}", status_code=204)
 def deleteOneCartItems(cart_id: str = Path(...)):
-    user_id = cart_id
 
     conn = get_connection()
     con = conn.cursor()
 
     con.execute("""DELETE
                    FROM bill
-                   where user_id = %s""", (user_id,))
+                   where user_id = %s""", (cart_id,))
 
     con.close()
     conn.close()
