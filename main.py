@@ -1,4 +1,4 @@
-from fastapi import Body, FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException, Query, Path
 from pydantic import BaseModel, Field
 import mysql.connector
 import os
@@ -28,8 +28,8 @@ class BillRequest(BaseModel):
 
 
 @app.post("/bill/{id}", status_code=201)
-def bill(id: str, req: BillRequest):
-    user_id = req.user_id
+def bill(id: str, cart_id: str = Query(...)):
+    user_id = cart_id
     # SQL Connection
     conn = get_connection()
     con = conn.cursor()
@@ -181,9 +181,9 @@ def clearBill():
     return {"message": "bill table cleared"}
 
 
-@app.post('/transaction', status_code=201)
-def transaction(abc: BillRequest):
-    user_id = abc.user_id
+@app.post('/transaction/{cart_id}', status_code=201)
+def transaction(cart_id: str = Path(...)):
+    user_id = cart_id
 
     conn = get_connection()
     con = conn.cursor()
@@ -193,25 +193,28 @@ def transaction(abc: BillRequest):
                    FROM bill
                    where user_id = %s
                    GROUP BY user_id;
-                """,(user_id,))
+                """, (user_id,))
 
     conn.commit()
     con.close()
     conn.close()
 
-    return {'status':'successful'}
+    return {'status': 'successful'}
 
-@app.post("/deleteUsers",status_code=201)
-def deleteUsers(abc: BillRequest):
-    user_id = abc.user_id
 
-    conn =get_connection()
+@app.delete("/deleteOneCartItems/{cart_id}", status_code=204)
+def deleteOneCartItems(cart_id: str = Path(...)):
+    user_id = cart_id
+
+    conn = get_connection()
     con = conn.cursor()
 
-    con.execute("""DELETE FROM bill where user_id = %s""",(user_id,))
+    con.execute("""DELETE
+                   FROM bill
+                   where user_id = %s""", (user_id,))
 
     conn.commit()
     con.close()
     conn.close()
 
-    return {'messege':'congrats, bitch'}
+    return
