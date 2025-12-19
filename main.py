@@ -217,11 +217,26 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     else:
         con.execute("delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
 
-    conn.commit()
-    con.close()
-    conn.close()
+        # Returning the updated table
+        con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
+        _list_of_buy_items = con.fetchall()
+        conn.commit()
 
-    return
+        list_of_buy_items = []
+
+        for i in _list_of_buy_items:
+            temp_dict = {}
+
+            temp_dict['pID'] = i[0]
+            temp_dict['pdtName'] = i[1]
+            temp_dict['qty'] = i[2]
+            temp_dict['cost'] = i[3]
+
+            list_of_buy_items.append(temp_dict)
+
+        con.close()
+        conn.close()
+        return list_of_buy_items
 
 
 @app.delete("/deleteOneCartItems/{cart_id}", status_code=204)
@@ -238,6 +253,7 @@ def deleteOneCartItems(cart_id: str = Path(...)):
     # Returning the updated table
     con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
     _list_of_buy_items = con.fetchall()
+    conn.commit()
 
     list_of_buy_items = []
 
@@ -254,5 +270,3 @@ def deleteOneCartItems(cart_id: str = Path(...)):
     con.close()
     conn.close()
     return list_of_buy_items
-
-    return
