@@ -128,10 +128,10 @@ def inc(value: A):
     msg = {}
 
     if value.state == 1:
-        cur.execute("UPDATE a SET `count` = `count` + 1 WHERE id = %s",(value.id,))
+        cur.execute("UPDATE a SET count = count + 1 WHERE id = %s",(value.id,))
         msg = {"messege": "Count incremented"}
     else:
-        cur.execute("UPDATE a SET `count` = `count` - 1 WHERE id = %s",(value.id,))
+        cur.execute("UPDATE a SET count = count - 1 WHERE id = %s",(value.id,))
         msg = {"messege": "Count decremented"}
 
     conn.commit()
