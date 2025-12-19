@@ -202,6 +202,25 @@ def transaction(cart_id: str = Path(...)):
     return {'status': 'successful'}
 
 
+@app.delete("/deleteOneCartItems/item/{cart_id}", status_code=204)
+def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)):
+    conn = get_connection()
+    con = conn.cursor()
+
+    sqlQuery = ("""DELETE
+                   FROM bill
+                   where user_id = %s
+                     and p_id = %s""")
+
+    con.execute(sqlQuery, (cart_id, product_id,))
+
+    conn.commit()
+    con.close()
+    conn.close()
+
+    return
+
+
 @app.delete("/deleteOneCartItems/{cart_id}", status_code=204)
 def deleteOneCartItems(cart_id: str = Path(...)):
     user_id = cart_id
