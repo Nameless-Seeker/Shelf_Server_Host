@@ -212,9 +212,6 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
         con.execute(
             "update bill set qty = qty-1,Cost_Price = Cost_Price - %s where user_id = %s and p_id = %s", (actual_cost,cart_id, product_id))
 
-        con.execute(
-            "update bill set Cost_Price = Cost_Price*qty where user_id = %s and p_id = %s", (cart_id, product_id))
-
     else:
         con.execute(
             "delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
@@ -238,6 +235,7 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
 
         list_of_buy_items.append(temp_dict)
 
+    conn.commit()
     con.close()
     conn.close()
     return list_of_buy_items
