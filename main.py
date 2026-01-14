@@ -22,7 +22,6 @@ class A(BaseModel):
 
 app = FastAPI()
 
-
 class BillRequest(BaseModel):
     user_id: str
 
@@ -61,7 +60,7 @@ def bill(id: str, cart_id: str = Query(...)):
           VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
           UPDATE
               qty = qty + 1,
-              Cost_Price = Cost_Price*qty
+              Cost_Price = Cost_Price+new.Cost_Price
           """
 
     con.execute(sql, (user_id, id, productName, Cost))
