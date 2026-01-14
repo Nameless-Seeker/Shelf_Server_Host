@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="555a0f58-e8ad-48ec-be58-2d4b92c62010" name="Changes" comment="Made the cost price show up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766002212370</updated>
-      <workItem from="1768391716890" duration="6300000" />
+      <workItem from="1768391716890" duration="7793000" />
     </task>
     <task id="LOCAL-00001" summary="made the requirements as a .txt file">
       <option name="closed" value="true" />
@@ -392,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768397463269</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Made the cost price show up">
+      <option name="closed" value="true" />
+      <created>1768398659671</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1768398659671</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

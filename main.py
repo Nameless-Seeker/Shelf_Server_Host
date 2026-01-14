@@ -200,10 +200,17 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
         "select qty from bill where user_id = %s and p_id = %s", (cart_id, product_id))
     qty = con.fetchone()[0]
 
+    conn.commit()
+
+    con.execute("select Cost from a where id = %s",(product_id,))
+    actual_cost = con.fetchone()[0]
+
+    conn.commit()
+
     # If qty is more than one then decrease one product
     if (qty > 1):
         con.execute(
-            "update bill set qty = qty-1 where user_id = %s and p_id = %s", (cart_id, product_id))
+            "update bill set qty = qty-1,Cost_Price = Cost_Price - %s where user_id = %s and p_id = %s", (actual_cost,cart_id, product_id))
 
         con.execute(
             "update bill set Cost_Price = Cost_Price*qty where user_id = %s and p_id = %s", (cart_id, product_id))
