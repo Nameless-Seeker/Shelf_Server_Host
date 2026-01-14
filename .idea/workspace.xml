@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="555a0f58-e8ad-48ec-be58-2d4b92c62010" name="Changes" comment="Made the inc better with  better MySQL syntax">
+    <list default="true" id="555a0f58-e8ad-48ec-be58-2d4b92c62010" name="Changes" comment="Made the change of variable name of cost price">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,14 +44,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/College/Project/Shelf/Code/Backend",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-PY-253.28294.336" />
         <option value="bundled-python-sdk-0978a7220b69-9867c7d4c0a4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.28294.336" />
       </set>
     </attachedChunks>
@@ -62,6 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766002212370</updated>
+      <workItem from="1768391716890" duration="1301000" />
     </task>
     <task id="LOCAL-00001" summary="made the requirements as a .txt file">
       <option name="closed" value="true" />
@@ -311,8 +321,19 @@
       <option name="project" value="LOCAL" />
       <updated>1766134010273</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Made the change of variable name of cost price">
+      <option name="closed" value="true" />
+      <created>1768391834928</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1768391834928</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="made the requirements as a .txt file" />
@@ -328,6 +349,7 @@
     <MESSAGE value="Updated the result for live showing to the user in the app that I made" />
     <MESSAGE value="Made the inc better iwth  beter sql syntax" />
     <MESSAGE value="Made the inc better with  better MySQL syntax" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the inc better with  better MySQL syntax" />
+    <MESSAGE value="Made the change of variable name of cost price" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the change of variable name of cost price" />
   </component>
 </project>
