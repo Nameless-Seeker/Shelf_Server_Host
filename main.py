@@ -45,7 +45,7 @@ def bill(id: str, cart_id: str = Query(...)):
         raise HTTPException(status_code=400, detail="ID not found")
 
     # ID exists
-    con.execute(f"SELECT id,Product_Name,Cost_Price from a where id = %s", (id,))
+    con.execute(f"SELECT id,Product_Name,Cost from a where id = %s", (id,))
     res = con.fetchone()
 
     id = res[0]
@@ -57,12 +57,12 @@ def bill(id: str, cart_id: str = Query(...)):
 
     # Inserting into list of buy items
     sql = """
-          INSERT INTO bill (user_id, p_id, p_name, qty, cost)
+          INSERT INTO bill (user_id, p_id, p_name, qty, Cost_Price)
           VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
           UPDATE
               qty = qty + 1,
-              cost = cost +
-          VALUES (cost) \
+              Cost_Price = Cost_Price +
+          VALUES (Cost_Price) \
           """
 
     con.execute(sql, (user_id, id, productName, Cost))
@@ -70,7 +70,7 @@ def bill(id: str, cart_id: str = Query(...)):
     conn.commit()
 
     con.execute(
-        f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
+        f"SELECT p_id,p_name,qty,Cost_Price FROM bill where user_id = %s", (user_id,))
     _list_of_buy_items = con.fetchall()
 
     list_of_buy_items = []
@@ -214,7 +214,7 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
 
     # Returning the updated table
     con.execute(
-        f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (cart_id,))
+        f"SELECT p_id,p_name,qty,Cost_Price FROM bill where user_id = %s", (cart_id,))
     _list_of_buy_items = con.fetchall()
 
     list_of_buy_items = []
