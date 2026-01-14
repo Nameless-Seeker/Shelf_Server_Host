@@ -203,7 +203,7 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     # If qty is more than one then decrease one product
     if (qty > 1):
         con.execute(
-            "update bill set qty = qty-1 where user_id = %s and p_id = %s", (cart_id, product_id))
+            "update bill set qty = qty-1,Cost_Price = Cost_Price*qty where user_id = %s and p_id = %s", (cart_id, product_id))
 
     else:
         con.execute(
