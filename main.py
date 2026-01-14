@@ -61,7 +61,7 @@ def bill(id: str, cart_id: str = Query(...)):
           VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
           UPDATE
               qty = qty + 1,
-              Cost_Price = Cost_Price+1
+              Cost_Price = Cost_Price*qty
           """
 
     con.execute(sql, (user_id, id, productName, Cost))
