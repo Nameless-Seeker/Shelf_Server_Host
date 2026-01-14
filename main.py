@@ -52,15 +52,17 @@ def bill(id: str, cart_id: str = Query(...)):
     Cost = res[2]
 
     # con.execute(
+    conn.commit()
     #     "ALTER TABLE bill ADD UNIQUE KEY uq_user_product (user_id, p_id)")
 
     # Inserting into list of buy items
     sql = """
           INSERT INTO bill (user_id, p_id, p_name, qty, Cost_Price)
-          VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
-          UPDATE
-              qty = qty + 1,
-              Cost_Price = Cost_Price+new.Cost_Price
+          VALUES (%s, %s, %s, 1, %s) AS new
+          ON DUPLICATE KEY \
+          UPDATE \
+              qty = qty + 1, \
+              Cost_Price = Cost_Price + new.Cost_Price; \
           """
 
     con.execute(sql, (user_id, id, productName, Cost))
@@ -70,6 +72,7 @@ def bill(id: str, cart_id: str = Query(...)):
     con.execute(
         f"SELECT p_id,p_name,qty,Cost_Price FROM bill where user_id = %s", (user_id,))
     _list_of_buy_items = con.fetchall()
+    conn.commit()
 
     list_of_buy_items = []
 
