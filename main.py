@@ -178,7 +178,6 @@ def transaction(cart_id: str = Path(...)):
 
     conn = get_connection()
     con = conn.cursor()
-
     con.execute("""INSERT INTO transaction (products)
                    SELECT JSON_ARRAYAGG(p_id)
                    FROM bill
