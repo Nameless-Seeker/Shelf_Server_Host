@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="555a0f58-e8ad-48ec-be58-2d4b92c62010" name="Changes" comment="Made the inc better with  better MySQL syntax">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nameless-Seeker&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nameless-Seeker/Shelf_Server_Host.git&quot;,
+    &quot;accountId&quot;: &quot;0ac78c56-b663-4b07-8930-0632264bb497&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="36zGuYLFNKBgmr0Zh4AbeVb5IKx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/College/Project/Shelf/Code/Backend",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0978a7220b69-9867c7d4c0a4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.28294.336" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="555a0f58-e8ad-48ec-be58-2d4b92c62010" name="Changes" comment="" />
+      <created>1766002212370</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766002212370</updated>
+    </task>
+    <task id="LOCAL-00001" summary="made the requirements as a .txt file">
+      <option name="closed" value="true" />
+      <created>1766004513475</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766004513475</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changed the name of the Table from A to a">
+      <option name="closed" value="true" />
+      <created>1766006617564</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766006617564</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Nothing">
+      <option name="closed" value="true" />
+      <created>1766006745835</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766006745835</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Nothing">
+      <option name="closed" value="true" />
+      <created>1766007377351</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1766007377351</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Nothing">
+      <option name="closed" value="true" />
+      <created>1766010542043</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1766010542043</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Nothing">
+      <option name="closed" value="true" />
+      <created>1766010989229</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1766010989229</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Nothing">
+      <option name="closed" value="true" />
+      <created>1766014046070</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766014046070</updated>
+    </task>
+    <task id="LOCAL-00008" summary="truncating the bill table">
+      <option name="closed" value="true" />
+      <created>1766017355600</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766017355600</updated>
+    </task>
+    <task id="LOCAL-00009" summary="made the Request better">
+      <option name="closed" value="true" />
+      <created>1766054791041</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1766054791041</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Made the transaction">
+      <option name="closed" value="true" />
+      <created>1766063100502</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766063100502</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Made the transaction">
+      <option name="closed" value="true" />
+      <created>1766063402023</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766063402023</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Made the transaction">
+      <option name="closed" value="true" />
+      <created>1766064448742</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1766064448742</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Made the delete">
+      <option name="closed" value="true" />
+      <created>1766064790146</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766064790146</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Made the delete">
+      <option name="closed" value="true" />
+      <created>1766065559963</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1766065559966</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Made the delete">
+      <option name="closed" value="true" />
+      <created>1766065746800</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1766065746800</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Made the REST APIs better. Man this is fun">
+      <option name="closed" value="true" />
+      <created>1766124358232</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1766124358232</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Made an api for deleteing one particular item from cart">
+      <option name="closed" value="true" />
+      <created>1766126631079</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1766126631079</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Made the qty problem fixed. Made the qty dec if &gt;1 am=nd deleting the item if qty = 1">
+      <option name="closed" value="true" />
+      <created>1766128079129</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1766128079129</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766129065528</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1766129065528</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766129320670</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1766129320670</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766129688341</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1766129688341</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766130224103</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1766130224103</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766130368237</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1766130368237</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Updated the result for live showing to the user in the app that I made">
+      <option name="closed" value="true" />
+      <created>1766130966650</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1766130966650</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Made the inc better iwth  beter sql syntax">
+      <option name="closed" value="true" />
+      <created>1766132703295</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1766132703295</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Made the inc better iwth  beter sql syntax">
+      <option name="closed" value="true" />
+      <created>1766133132739</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133132739</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Made the inc better iwth  beter sql syntax">
+      <option name="closed" value="true" />
+      <created>1766133445197</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133445197</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Made the inc better with  better MySQL syntax">
+      <option name="closed" value="true" />
+      <created>1766133676418</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133676418</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Made the inc better with  better MySQL syntax">
+      <option name="closed" value="true" />
+      <created>1766133740818</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133740818</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Made the inc better with  better MySQL syntax">
+      <option name="closed" value="true" />
+      <created>1766133805240</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1766133805240</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Made the inc better with  better MySQL syntax">
+      <option name="closed" value="true" />
+      <created>1766134010273</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1766134010273</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="made the requirements as a .txt file" />
+    <MESSAGE value="Changed the name of the Table from A to a" />
+    <MESSAGE value="Nothing" />
+    <MESSAGE value="truncating the bill table" />
+    <MESSAGE value="made the Request better" />
+    <MESSAGE value="Made the transaction" />
+    <MESSAGE value="Made the delete" />
+    <MESSAGE value="Made the REST APIs better. Man this is fun" />
+    <MESSAGE value="Made an api for deleteing one particular item from cart" />
+    <MESSAGE value="Made the qty problem fixed. Made the qty dec if &gt;1 am=nd deleting the item if qty = 1" />
+    <MESSAGE value="Updated the result for live showing to the user in the app that I made" />
+    <MESSAGE value="Made the inc better iwth  beter sql syntax" />
+    <MESSAGE value="Made the inc better with  better MySQL syntax" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the inc better with  better MySQL syntax" />
+  </component>
+</project>

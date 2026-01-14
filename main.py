@@ -45,32 +45,32 @@ def bill(id: str, cart_id: str = Query(...)):
         raise HTTPException(status_code=400, detail="ID not found")
 
     # ID exists
-    con.execute(f"SELECT id,Product_Name,Cost from a where id = %s", (id,))
+    con.execute(f"SELECT id,Product_Name,Cost_Price from a where id = %s", (id,))
     res = con.fetchone()
 
     id = res[0]
     productName = res[1]
-    cost = res[2]
+    Cost_Price = res[2]
 
     # con.execute(
     #     "ALTER TABLE bill ADD UNIQUE KEY uq_user_product (user_id, p_id)")
 
     # Inserting into list of buy items
     sql = """
-          INSERT INTO bill (user_id, p_id, p_name, qty, cost)
+          INSERT INTO bill (user_id, p_id, p_name, qty, Cost_Price)
           VALUES (%s, %s, %s, 1, %s) ON DUPLICATE KEY
           UPDATE
               qty = qty + 1,
-              cost = cost +
-          VALUES (cost) \
+              Cost_Price = Cost_Price +
+          VALUES (Cost_Price) \
           """
 
-    con.execute(sql, (user_id, id, productName, cost))
+    con.execute(sql, (user_id, id, productName, Cost_Price))
 
     conn.commit()
 
     con.execute(
-        f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (user_id,))
+        f"SELECT p_id,p_name,qty,Cost_Price FROM bill where user_id = %s", (user_id,))
     _list_of_buy_items = con.fetchall()
 
     list_of_buy_items = []
@@ -81,7 +81,7 @@ def bill(id: str, cart_id: str = Query(...)):
         temp_dict['pID'] = i[0]
         temp_dict['pdtName'] = i[1]
         temp_dict['qty'] = i[2]
-        temp_dict['cost'] = i[3]
+        temp_dict['Cost_Price'] = i[3]
 
         list_of_buy_items.append(temp_dict)
 
@@ -114,7 +114,7 @@ def status():
         temp_dict['Count'] = i[1]
         temp_dict['Product Name'] = i[2]
         temp_dict["Date and time"] = i[3].ctime()
-        temp_dict["Cost per item"] = i[4]
+        temp_dict["Cost_Price per item"] = i[4]
         ans[i[0]] = temp_dict
 
     return ans
@@ -128,26 +128,28 @@ def inc(value: A):
     msg = {}
 
     if value.state == 1:
-        cur.execute("UPDATE a SET `count` = `count` + 1 WHERE id = %s",(value.id,))
+        cur.execute(
+            "UPDATE a SET `count` = `count` + 1 WHERE id = %s", (value.id,))
         msg = {"messege": "Count incremented"}
     else:
-        cur.execute("UPDATE a SET `count` = `count` - 1 WHERE id = %s",(value.id,))
+        cur.execute(
+            "UPDATE a SET `count` = `count` - 1 WHERE id = %s", (value.id,))
         msg = {"messege": "Count decremented"}
 
     conn.commit()
 
     # Code for response
-    cur.execute("SELECT * FROM a WHERE id = %s",(value.id,))
+    cur.execute("SELECT * FROM a WHERE id = %s", (value.id,))
     data = cur.fetchone()
     pID = data[0]
     pName = data[2]
     new_count = data[1]
-    cost_per_item = data[4]
+    Cost_Price_per_item = data[4]
 
     msg['Shelf id'] = pID
     msg['PRoduct Name'] = pName
     msg["Total items present"] = new_count
-    msg["Cost per item"] = cost_per_item
+    msg["Cost_Price per item"] = Cost_Price_per_item
 
     cur.close()
     conn.close()
@@ -196,20 +198,24 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
     conn = get_connection()
     con = conn.cursor()
 
-    con.execute("select qty from bill where user_id = %s and p_id = %s", (cart_id, product_id))
+    con.execute(
+        "select qty from bill where user_id = %s and p_id = %s", (cart_id, product_id))
     qty = con.fetchone()[0]
 
     # If qty is more than one then decrease one product
     if (qty > 1):
-        con.execute("update bill set qty = qty-1 where user_id = %s and p_id = %s", (cart_id, product_id))
+        con.execute(
+            "update bill set qty = qty-1 where user_id = %s and p_id = %s", (cart_id, product_id))
 
     else:
-        con.execute("delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
+        con.execute(
+            "delete from bill where user_id = %s and p_id = %s", (cart_id, product_id))
 
     conn.commit()
 
     # Returning the updated table
-    con.execute(f"SELECT p_id,p_name,qty,cost FROM bill where user_id = %s", (cart_id,))
+    con.execute(
+        f"SELECT p_id,p_name,qty,Cost_Price FROM bill where user_id = %s", (cart_id,))
     _list_of_buy_items = con.fetchall()
 
     list_of_buy_items = []
@@ -220,7 +226,7 @@ def deleteOneItemFromCart(cart_id: str = Path(...), product_id: str = Query(...)
         temp_dict['pID'] = i[0]
         temp_dict['pdtName'] = i[1]
         temp_dict['qty'] = i[2]
-        temp_dict['cost'] = i[3]
+        temp_dict['Cost_Price'] = i[3]
 
         list_of_buy_items.append(temp_dict)
 
